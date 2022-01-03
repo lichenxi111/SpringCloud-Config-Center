@@ -1,0 +1,41 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: http://euk1.com:7001/eureka/
+server:
+  port: 92
+spring:
+  application:
+    name: user-consumer
+    #zipkin
+  zipkin:
+    base-url: http://192.168.2.9:9411/
+    #采样比例1
+  sleuth:
+    sampler:
+      rate: 1
+  boot:
+    admin:
+      client:
+        url: http://localhost:8080/
+
+
+feign:
+  hystrix:
+    enabled: true
+#开启actuator健康上报的所有内容
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+    jmx:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+hystrix:
+  dashboard:
+    proxy-stream-allow-list: "localhost"
+
